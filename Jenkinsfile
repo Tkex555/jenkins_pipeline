@@ -4,19 +4,19 @@ pipeline {
     stages {
         stage('Instalar dependencias') {
             steps {
-                sh '''
-                    python3 -m venv venv
-                    . venv/bin/activate
-                    pip install -r requirements.txt || echo "No hay archivo requirements.txt"
+                bat '''
+                    python -m venv venv
+                    call venv\\Scripts\\activate
+                    pip install -r requirements.txt || echo No hay archivo requirements.txt
                 '''
             }
         }
 
         stage('Ejecutar pruebas') {
             steps {
-                sh '''
-                    . venv/bin/activate
-                    python3 test_main.py
+                bat '''
+                    call venv\\Scripts\\activate
+                    python test_main.py
                 '''
             }
         }
